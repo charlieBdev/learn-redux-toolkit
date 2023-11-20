@@ -14,19 +14,16 @@ const counterSlice = createSlice({
 	name: 'counter',
 	initialState,
 	reducers: {
-		increment(state) {
+		incremented(state) {
 			// looks like it's mutating but it's not due to Redux magic (Immer)
 			state.value++;
 		},
-		decrement(state) {
-			state.value--;
-		},
-		reset(state) {
-			state.value = 0;
+		amountAdded(state, action: PayloadAction<number>) {
+			state.value += action.payload;
 		},
 	},
 });
 
-export const { increment, decrement, reset } = counterSlice.actions;
+export const { incremented, amountAdded } = counterSlice.actions;
 
 export default counterSlice.reducer;
